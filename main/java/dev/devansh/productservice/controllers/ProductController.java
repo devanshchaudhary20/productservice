@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -18,8 +19,8 @@ public class ProductController {
     }
 
     @GetMapping
-    public void getAllProducts() {
-
+    public List<GenericProductDto> getAllProducts() {
+        return productService.getAllProducts();
     }
 
     @GetMapping("{id}")
