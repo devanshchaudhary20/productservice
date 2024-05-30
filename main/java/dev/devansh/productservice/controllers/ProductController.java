@@ -4,6 +4,8 @@ import dev.devansh.productservice.dtos.GenericProductDto;
 import dev.devansh.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,8 +31,11 @@ public class ProductController {
     }
 
     @DeleteMapping("{id}")
-    public void deleteProductId() {
-
+    public ResponseEntity<GenericProductDto> deleteProductId(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(
+                productService.deleteProduct(id),
+                HttpStatus.OK
+        );
     }
 
     @PostMapping
@@ -39,7 +44,7 @@ public class ProductController {
     }
 
     @PutMapping("{id}")
-    public void updateProductById() {
-
+    public GenericProductDto updateProductById(@PathVariable("id") Long id, @RequestBody GenericProductDto product) {
+        return productService.updateProduct(id, product);
     }
 }
