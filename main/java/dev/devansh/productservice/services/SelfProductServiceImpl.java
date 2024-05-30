@@ -11,4 +11,8 @@ public class SelfProductServiceImpl implements ProductService{
     public GenericProductDto getProductById(Long id) {
         return null;
     }
+
+    public GenericProductDto createProduct(GenericProductDto product) {
+        return null;
+    }
 }

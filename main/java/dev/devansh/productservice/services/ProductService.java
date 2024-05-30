@@ -4,6 +4,6 @@ import dev.devansh.productservice.dtos.GenericProductDto;
 import dev.devansh.productservice.models.Product;
 
 public interface ProductService {
-
+    GenericProductDto createProduct(GenericProductDto product);
     GenericProductDto getProductById(Long id);
 }
