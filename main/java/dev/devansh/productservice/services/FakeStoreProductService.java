@@ -2,6 +2,7 @@ package dev.devansh.productservice.services;
 
 import dev.devansh.productservice.dtos.FakeStoreProductDto;
 import dev.devansh.productservice.dtos.GenericProductDto;
+import dev.devansh.productservice.exceptions.NotFoundException;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -45,12 +46,15 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public GenericProductDto getProductById(Long id) {
+    public GenericProductDto getProductById(Long id) throws NotFoundException {
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDto> response = restTemplate.getForEntity(specificProductRequestUrl, FakeStoreProductDto.class, id);
 
         FakeStoreProductDto fakeStoreProductDto = response.getBody();
 
+        if (fakeStoreProductDto == null) {
+            throw new NotFoundException("product with id: " + id + " doesn't exist.");
+        }
         return convertFakeStoreProductIntoGenericProduct(fakeStoreProductDto);
     }
 
