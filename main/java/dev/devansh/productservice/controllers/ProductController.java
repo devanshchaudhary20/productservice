@@ -1,6 +1,8 @@
 package dev.devansh.productservice.controllers;
 
+import dev.devansh.productservice.dtos.ExceptionDto;
 import dev.devansh.productservice.dtos.GenericProductDto;
+import dev.devansh.productservice.exceptions.NotFoundException;
 import dev.devansh.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,7 +28,7 @@ public class ProductController {
     }
 
     @GetMapping("{id}")
-    public GenericProductDto getProductById(@PathVariable("id") Long id) {
+    public GenericProductDto getProductById(@PathVariable("id") Long id) throws NotFoundException {
         return productService.getProductById(id);
     }
 
