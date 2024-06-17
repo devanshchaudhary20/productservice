@@ -1,5 +1,4 @@
-package dev.devansh.productservice.dtos;
-import dev.devansh.productservice.models.Category;
+package dev.devansh.productservice.thirdpartyclients.productsservice.fakestore;
 import lombok.Getter;
 import lombok.Setter;
 
